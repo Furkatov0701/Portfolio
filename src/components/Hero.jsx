@@ -3,6 +3,7 @@ import tiktok from "../assets/tiktok.png"
 import instagram from "../assets/instagram.jpg"
 import gitHub from "../assets/github.webp"
 import CV from "../assets/CV.png"
+import hero from "../assets/hero.png"
 import { DownloadIcon, Mail } from "lucide-react"
 
 
@@ -88,15 +89,32 @@ const Hero = ({darkMode}) => {
                                 </a>
                                 <a href="#contact" className="w-full sm:w-auto" >
                                     <button className={`w-full sm:w-auto
-                                       "w-full ${theme.textSecondary} inline-flex items-center justify-center
-                                    text-white bg-linear-to-r from-orange-500 to-amber-500 border-0
+                                       "w-full ${theme.buttonSecondary} inline-flex items-center justify-center
+                                    text-white  border-0
                                     py-3 px-6 sm:px-8 hover:shodow-[0_0_40px_rgb(255, 165.0,0.7)] rounded-full text-base sm:text-lg font-semibold transition-all
                                     duration-300 transform" `}>
                                         <Mail className="w-4 h-4 sm:h-5 sm:w-5 mr-2"/>Contact Me
                                     </button>
                                 </a>
                             </div>
-
+                        </div>
+                    </div>
+                    {/* Image */}
+                    <div
+                    className="lg:w-1/2 w-full max-w-md lg:max-w-lg mt-8 lg:mt-0 flex justify-center"
+                    data-aos='fade-left'
+                    data-aos-delay='400'>
+                        <div className='relative w-4/5 sm:w-3/4 lg:w-full  '>
+                            <div className="relative overflow-hidden ">
+                                    <img
+                                    src={hero}  
+                                    alt="Hero Image"
+                                    className="w-full h-auto object-cover transform 
+                                    hover:scale-105 transition-transform duration-500" />
+                            </div>
+                            <img
+                            // src={hi} 
+                            alt="Hi icon" />
                         </div>
                     </div>
                 </div>
