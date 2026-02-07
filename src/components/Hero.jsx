@@ -15,7 +15,7 @@ const Hero = ({darkMode}) => {
         { icon: tiktok, alt: 'tiktok'},
         { icon: gitHub, alt: 'github'},
         { icon: youTube, alt: 'instagram'},
-    ]
+    ] 
 
     const darkTheme = {
         textPrimary: 'text-white',
