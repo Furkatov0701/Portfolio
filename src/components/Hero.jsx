@@ -4,6 +4,7 @@ import instagram from "../assets/instagram.jpg"
 import gitHub from "../assets/github.webp"
 import CV from "../assets/CV.png"
 import hero from "../assets/hero.png"
+import hi from "../assets/hi.png"
 import { DownloadIcon, Mail } from "lucide-react"
 
 
@@ -41,7 +42,7 @@ const Hero = ({darkMode}) => {
             data-aos="fade-up"
             data-aos-delat='250'
             className="body-font z-10">
-                <div className="container mx-auto flex px-4 sm:px-8 lg:px-14 py-12 lg:py-32 flex-col lg:flex-row items-center justify-between
+                <div className="container mx-auto flex px-4 sm:px-8 lg:px-14 py-12 lg:py-14 flex-col lg:flex-row items-center justify-between
                 lg:mt-0 mt-14">
 
                     <div className="lg:w-1/2 w-full  flex flex-col  items-center lg:items-start text-center  lg:text-left  mg-12 lg:mb-0">
@@ -81,21 +82,21 @@ const Hero = ({darkMode}) => {
                                 <a href={CV} download className="w-full sm:w-auto">
                                     <button className="w-full sm:w-auto inline-flex items-center justify-center
                                     text-white bg-linear-to-r from-orange-500 to-amber-500 border-0
-                                    py-3 px-6 sm:px-8 hover:shodow-[0_0_40px_rgb(255, 165.0,0.7)] rounded-full text-base sm:text-lg font-semibold transition-all
+                                    py-3 px-6 sm:px-8 hover:shodow-[0_0_40px_rgb(255,165,0,0.7)] rounded-full text-base sm:text-lg font-semibold transition-all
                                     duration-300 transform">
-                                        <DownloadIcon className="w-4 h-4 sm:h-5 sm:w-5 mr-2" />
+                                        <DownloadIcon className="w-4 h-4 sm:h-5 sm:w-5 mr-2" /> 
                                         Download CV
                                     </button>
                                 </a>
                                 <a href="#contact" className="w-full sm:w-auto" >
                                     <button className={`w-full sm:w-auto
-                                       "w-full ${theme.buttonSecondary} inline-flex items-center justify-center
-                                    text-white  border-0
-                                    py-3 px-6 sm:px-8 hover:shodow-[0_0_40px_rgb(255, 165.0,0.7)] rounded-full text-base sm:text-lg font-semibold transition-all
-                                    duration-300 transform" `}>
+                                        ${theme.buttonSecondary} inline-flex items-center justify-center
+                                      border-0
+                                    py-3 px-6 sm:px-8 hover:shodow-[0_0_40px_rgb(255,165,0,0.7)] rounded-full text-base sm:text-lg font-semibold transition-all
+                                    duration-300 transform `}>
                                         <Mail className="w-4 h-4 sm:h-5 sm:w-5 mr-2"/>Contact Me
                                     </button>
-                                </a>
+                                </a> 
                             </div>
                         </div>
                     </div>
@@ -113,12 +114,18 @@ const Hero = ({darkMode}) => {
                                     hover:scale-105 transition-transform duration-500" />
                             </div>
                             <img
-                            // src={hi} 
-                            alt="Hi icon" />
+                            src={hi} 
+                            alt="Hi icon" 
+                            className="absolute -top-4 sm:top-4 left-6 sm:left-20 w-14
+                            h-14 sm:w-20 sm:h-20 object-contain  animate-bounce opacity-90 z-10 "/>
                         </div>
                     </div>
                 </div>
-
+                <div className={`absolute -top-20 -left-20 w-40 h-40 sm:w-64 
+                    sm:h-64 ${theme.decorativeCircle} rounded-full 
+                    mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-1000 hidden sm:block`}>
+                    
+                </div>              
             </section>
         </div>
     )
