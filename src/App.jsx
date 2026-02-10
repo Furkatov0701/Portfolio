@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar"
 import Hero from "./components/Hero";
-import About from "./components/Hero";
+import About from "./components/About";
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect, useState } from "react";

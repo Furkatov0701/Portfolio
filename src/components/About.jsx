@@ -1,7 +1,7 @@
+import about from "../assets/about.webp"
 
 
-
-const About = (darkMode) => {
+const About = ({darkMode}) => {
     return (
         <section id="about" className={`min-h-screen overflow-hidden flex items-center justify-center px-4 sm:px-6 
         ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
@@ -19,7 +19,7 @@ const About = (darkMode) => {
 
                         </div>
                         <img
-                            // src={} 
+                            src={about} 
                             alt="About img"
                             className="absolute inset-0 w-full h-full object-cover z-10 transition-all duration-300"
                             data-aos='zoom-in'
