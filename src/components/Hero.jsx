@@ -21,14 +21,14 @@ const Hero = ({darkMode}) => {
     const darkTheme = {
         textPrimary: 'text-white',
         textSecondary: 'text-gray-300',
-        buttonSecondary: 'text-white border-2 border-orange-500 hover:bg-orange-600',
+        buttonSecondary: `text-white border-2 border-orange-500 hover:bg-orange-600`,
         decorativeCircle:  'bg-orange-500 opacity-10'
     };
 
     const lightTheme = {
         textPrimary: 'text-gray-900',
         textSecondary: 'text-gray-700',
-        buttonSecondary: 'text-gray-800 border-2 border-orange-500 hover:bg-orange-500 hover:text-white',
+        buttonSecondary: `text-gray-800 border-2 border-orange-500 hover:bg-orange-500 hover:text-white`,
         decorativeCircle:  'bg-orange-400 opacity-20'
     };
 
@@ -36,14 +36,14 @@ const Hero = ({darkMode}) => {
 
      
     return(
-        <div className="reletive overflow-hidden min-h-screen flex flex-col">
+        <div className="relative overflow-hidden min-h-screen flex flex-col">
             <section 
             id="home"
             data-aos="fade-up"
             data-aos-delat='250'
             className="body-font z-10">
                 <div className="container mx-auto flex px-4 sm:px-8 lg:px-14 py-12 lg:py-14 flex-col lg:flex-row items-center justify-between
-                lg:mt-0 mt-14">
+                lg:mt-14 mt-14">
 
                     <div className="lg:w-1/2 w-full  flex flex-col  items-center lg:items-start text-center  lg:text-left  mg-12 lg:mb-0">
                     <div className="flex justify-center lg:justify-start gap-4 sm:gap-6 mb-6 sm:mb-7 w-full">
@@ -91,7 +91,7 @@ const Hero = ({darkMode}) => {
                                 <a href="#contact" className="w-full sm:w-auto" >
                                     <button className={`w-full sm:w-auto
                                         ${theme.buttonSecondary} inline-flex items-center justify-center
-                                      border-0
+                                     text-white border-0
                                     py-3 px-6 sm:px-8 hover:shodow-[0_0_40px_rgb(255,165,0,0.7)] rounded-full text-base sm:text-lg font-semibold transition-all
                                     duration-300 transform `}>
                                         <Mail className="w-4 h-4 sm:h-5 sm:w-5 mr-2"/>Contact Me
@@ -124,7 +124,7 @@ const Hero = ({darkMode}) => {
                 <div className={`absolute -top-20 -left-20 w-40 h-40 sm:w-64 
                     sm:h-64 ${theme.decorativeCircle} rounded-full 
                     mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-1000 hidden sm:block`}>
-                    
+                            
                 </div>              
             </section>
         </div>
