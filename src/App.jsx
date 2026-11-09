@@ -10,8 +10,12 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 const getInitialMode = () => {
-  const saved = localStorage.getItem("theme");
-  return saved ? saved === "dark" : true;
+  try {
+    const saved = localStorage.getItem("theme");
+    return saved ? saved === "dark" : true;
+  } catch {
+    return true;
+  }
 };
 
 const App = () => {
@@ -23,7 +27,11 @@ const App = () => {
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
+    try {
+      localStorage.setItem("theme", darkMode ? "dark" : "light");
+    } catch {
+      /* localStorage mavjud emas — mavzu saqlanmaydi */
+    }
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", darkMode ? "#0d182e" : "#fff7ed");
   }, [darkMode]);
 
