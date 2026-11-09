@@ -1,134 +1,127 @@
-import youTube from "../assets/youtube.png"
-import tiktok from "../assets/tiktok.png"
-import instagram from "../assets/instagram.jpg"
-import gitHub from "../assets/github.webp"
-import CV from "../assets/CV.png"
-import hero from "../assets/hero.png"
-import hi from "../assets/hi.png"
-import { DownloadIcon, Mail } from "lucide-react"
+import { lazy, useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { DownloadIcon, Mail, ChevronDown } from "lucide-react";
+import CV from "../assets/CV.png";
+import hero from "../assets/hero.png";
+import hi from "../assets/hi.png";
+import Lazy3D from "./Lazy3D";
+import SocialLinks from "./SocialLinks";
+import { profile } from "../data/portfolio";
+import { useIsMobile, useReducedMotion } from "../hooks";
 
+const HeroScene = lazy(() => import("./three/HeroScene"));
 
-
-
-const Hero = ({darkMode}) => {
-    const socialIcons = [
-        { icon: instagram, alt: 'Instagram'},
-        { icon: tiktok, alt: 'tiktok'},
-        { icon: gitHub, alt: 'github'},
-        { icon: youTube, alt: 'instagram'},
-    ] 
-
-    const darkTheme = {
-        textPrimary: 'text-white',
-        textSecondary: 'text-gray-300',
-        buttonSecondary: `text-white border-2 border-orange-500 hover:bg-orange-600`,
-        decorativeCircle:  'bg-orange-500 opacity-10'
+/** Kasblarni navbat bilan yozib chiqadigan effekt */
+function useTypewriter(words, disabled) {
+  const [text, setText] = useState(words[0]);
+  useEffect(() => {
+    if (disabled) return;
+    let w = 0, i = words[0].length, deleting = true, timer;
+    const tick = () => {
+      const word = words[w];
+      i += deleting ? -1 : 1;
+      setText(word.slice(0, i));
+      let delay = deleting ? 45 : 90;
+      if (!deleting && i === word.length) { deleting = true; delay = 1600; }
+      else if (deleting && i === 0) { deleting = false; w = (w + 1) % words.length; delay = 300; }
+      timer = setTimeout(tick, delay);
     };
-
-    const lightTheme = {
-        textPrimary: 'text-gray-900',
-        textSecondary: 'text-gray-700',
-        buttonSecondary: `text-gray-800 border-2 border-orange-500 hover:bg-orange-500 hover:text-white`,
-        decorativeCircle:  'bg-orange-400 opacity-20'
-    };
-
-    const theme = darkMode ? darkTheme : lightTheme
-
-     
-    return(
-        <div className="relative overflow-hidden min-h-screen flex flex-col">
-            <section 
-            id="home"
-            data-aos="fade-up"
-            data-aos-delat='250'
-            className="body-font z-10">
-                <div className="container mx-auto flex px-4 sm:px-8 lg:px-14 py-12 lg:py-14 flex-col lg:flex-row items-center justify-between
-                lg:mt-14 mt-14">
-
-                    <div className="lg:w-1/2 w-full  flex flex-col  items-center lg:items-start text-center  lg:text-left  mg-12 lg:mb-0">
-                    <div className="flex justify-center lg:justify-start gap-4 sm:gap-6 mb-6 sm:mb-7 w-full">
-                        {socialIcons.map((social, index) => (
-                            <a 
-                            href="#"
-                            key={index}
-                            target='_blank'
-                            data-aos-delay={`${400 + index * 100}`}
-                            className="transform hover:scale-110 transition-transform duration-300"
-                            > <img 
-                            src={social.icon}
-                            alt={social.alt}
-                            className={`w-8 h-8  sm:w-10 sm:h-10 object-contain ${darkMode 
-                            ? '' 
-                            : 'filter brightness-75'
-                            }`} /> </a>
-                        ))}
-
-                    </div>
-                        <h1 className={`title-font text-3xl sm:text-4xl lg:text-5xl mb-4
-                            font-bold ${theme.textPrimary}`}
-                            data-aos='fade-up'
-                            data-aos-delay='500'>
-                            Hi, I'm Mr_Furkatovv
-                        </h1>
-                        <p className={`mb-6 sm:mb-8 leading-relaxed max-w-md sm:max-w-lg ${theme.textSecondary}`}
-                        data-aos='fade-up'
-                        data-aos-delay='600'>Lorem ipsum dolor sit amet consectetur adipisicing elit.  expedita, optio  velit veritatis recusandae possimus delectus amet, illo maxime tempora sequi id hic quo similique aliquam.</p>
-                        {/* Buttons */}
-                        <div className="w-full pt-4 sm:pt-6">
-                            <div className="flex flex-col sm:flex-row justify-center
-                            lg:justify-start gap-3 sm:gap-4"
-                            data-aos='fade-up'
-                            data-aos-delay='700'>
-                                <a href={CV} download className="w-full sm:w-auto">
-                                    <button className="w-full sm:w-auto inline-flex items-center justify-center
-                                    text-white bg-linear-to-r from-orange-500 to-amber-500 border-0
-                                    py-3 px-6 sm:px-8 hover:shodow-[0_0_40px_rgb(255,165,0,0.7)] rounded-full text-base sm:text-lg font-semibold transition-all
-                                    duration-300 transform">
-                                        <DownloadIcon className="w-4 h-4 sm:h-5 sm:w-5 mr-2" /> 
-                                        Download CV
-                                    </button>
-                                </a>
-                                <a href="#contact" className="w-full sm:w-auto" >
-                                    <button className={`w-full sm:w-auto
-                                        ${theme.buttonSecondary} inline-flex items-center justify-center
-                                     text-white border-0
-                                    py-3 px-6 sm:px-8 hover:shodow-[0_0_40px_rgb(255,165,0,0.7)] rounded-full text-base sm:text-lg font-semibold transition-all
-                                    duration-300 transform `}>
-                                        <Mail className="w-4 h-4 sm:h-5 sm:w-5 mr-2"/>Contact Me
-                                    </button>
-                                </a> 
-                            </div>
-                        </div>
-                    </div>
-                    {/* Image */}
-                    <div
-                    className="lg:w-1/2 w-full max-w-md lg:max-w-lg mt-8 lg:mt-0 flex justify-center"
-                    data-aos='fade-left'
-                    data-aos-delay='400'>
-                        <div className='relative w-4/5 sm:w-3/4 lg:w-full  '>
-                            <div className="relative overflow-hidden ">
-                                    <img
-                                    src={hero}  
-                                    alt="Hero Image"
-                                    className="w-full h-auto object-cover transform 
-                                    hover:scale-105 transition-transform duration-500" />
-                            </div>
-                            <img
-                            src={hi} 
-                            alt="Hi icon" 
-                            className="absolute -top-4 sm:top-4 left-6 sm:left-20 w-14
-                            h-14 sm:w-20 sm:h-20 object-contain  animate-bounce opacity-90 z-10 "/>
-                        </div>
-                    </div>
-                </div>
-                <div className={`absolute -top-20 -left-20 w-40 h-40 sm:w-64 
-                    sm:h-64 ${theme.decorativeCircle} rounded-full 
-                    mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-1000 hidden sm:block`}>
-                            
-                </div>              
-            </section>
-        </div>
-    )
+    timer = setTimeout(tick, 1600);
+    return () => clearTimeout(timer);
+  }, [words, disabled]);
+  return text;
 }
 
-export default Hero
+const Hero = ({ darkMode }) => {
+  const isMobile = useIsMobile();
+  const reduced = useReducedMotion();
+  const role = useTypewriter(profile.roles, reduced);
+
+  const fallback = (
+    <div className="relative flex h-full w-full items-center justify-center">
+      <img src={hero} alt="Hero" className="w-4/5 max-w-sm h-auto object-contain" />
+    </div>
+  );
+
+  return (
+    <section id="home" className="relative overflow-hidden min-h-svh flex items-center pt-28 pb-16 lg:pt-24">
+      {/* Fon bezaklari */}
+      <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-orange-500/20 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" />
+
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-8 px-4 sm:px-8 lg:px-14">
+        {/* Matn */}
+        <div className="relative z-10 flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1">
+          <SocialLinks darkMode={darkMode} className="mb-6 sm:mb-7" />
+
+          <h1
+            className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-3 leading-tight ${darkMode ? "text-white" : "text-gray-900"}`}
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            Hi, I'm{" "}
+            <span className="text-transparent bg-linear-to-r from-orange-400 via-amber-400 to-orange-600 bg-clip-text">
+              {profile.name}
+            </span>
+          </h1>
+
+          <p className="mb-5 h-8 text-lg sm:text-2xl font-semibold text-orange-500" data-aos="fade-up" data-aos-delay="400">
+            {role}
+            <span className="ml-0.5 inline-block w-0.5 h-6 align-middle bg-orange-500 animate-pulse" />
+          </p>
+
+          <p
+            className={`mb-8 leading-relaxed max-w-md sm:max-w-lg ${darkMode ? "text-gray-300" : "text-gray-700"}`}
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            {profile.intro}
+          </p>
+
+          <div className="flex w-full flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4" data-aos="fade-up" data-aos-delay="600">
+            <motion.a
+              href={CV}
+              download="CV.png"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center justify-center rounded-full bg-linear-to-r from-orange-500 to-amber-500 px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold text-white shadow-lg shadow-orange-500/30 transition-shadow hover:shadow-[0_0_40px_rgba(255,165,0,0.7)]"
+            >
+              <DownloadIcon className="mr-2 h-5 w-5" /> Download CV
+            </motion.a>
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`inline-flex items-center justify-center rounded-full border-2 border-orange-500 px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold transition-colors hover:bg-orange-500 hover:text-white ${darkMode ? "text-white" : "text-gray-800"}`}
+            >
+              <Mail className="mr-2 h-5 w-5" /> Contact Me
+            </motion.a>
+          </div>
+        </div>
+
+        {/* 3D sahna */}
+        <div className="relative order-1 lg:order-2 h-[340px] sm:h-[440px] lg:h-[560px] w-full fade-in">
+          <Lazy3D className="absolute inset-0" fallback={fallback}>
+            {(active) => <HeroScene darkMode={darkMode} isMobile={isMobile} active={active} />}
+          </Lazy3D>
+          <img
+            src={hi}
+            alt=""
+            aria-hidden
+            className="pointer-events-none absolute top-2 left-4 sm:left-12 z-10 h-14 w-14 sm:h-20 sm:w-20 object-contain animate-bounce opacity-90"
+          />
+        </div>
+      </div>
+
+      <a
+        href="#about"
+        aria-label="Scroll down"
+        className={`absolute bottom-4 left-1/2 -translate-x-1/2 hidden sm:flex animate-bounce ${darkMode ? "text-gray-400" : "text-gray-600"}`}
+      >
+        <ChevronDown className="h-8 w-8" />
+      </a>
+    </section>
+  );
+};
+
+export default Hero;

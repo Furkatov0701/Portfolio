@@ -3,28 +3,50 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.dark{
+.dark {
   color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
-.star-shape{
-  clip-path: polygon(
-    50% 50%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
+.star-shape {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+
+@keyframes star-spin {
+  to { rotate: 360deg; }
+}
+.star-spin {
+  animation: star-spin 40s linear infinite;
+}
+
+@keyframes cube-spin {
+  from { transform: rotateX(-20deg) rotateY(0deg); }
+  to   { transform: rotateX(-20deg) rotateY(360deg); }
+}
+.cube-spin {
+  animation: cube-spin 10s linear infinite;
+}
+.group:hover .cube-spin {
+  animation-duration: 3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .star-spin, .cube-spin, .animate-bounce, .animate-pulse { animation: none !important; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fade-in {
+  animation: fade-in 1.2s ease-out both;
 }

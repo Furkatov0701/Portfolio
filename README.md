@@ -1,16 +1,24 @@
-# React + Vite
+# Mr_Furkatovv — 3D Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite + Tailwind CSS + Three.js (React Three Fiber) asosidagi interaktiv 3D portfolio.
 
-Currently, two official plugins are available:
+## Bo'limlar
+- **Home** — sichqonchaga (telefonda barmoqqa) javob beradigan 3D sahna, yozuv effekti
+- **About** — 3D egiluvchi karta, statistika
+- **Skills** — aylanuvchi 3D texnologiyalar sferasi (kompyuterda sudrab aylantirish mumkin) + progress barlar
+- **Projects** — 3D tilt kartalar va CSS 3D kublar
+- **Contact** — forma (pochta ilovasini ochadi), kontaktlar, ijtimoiy tarmoqlar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Mobil
+- Barcha bo'limlar telefon/planshetga moslashgan, mobil menyu
+- Telefonda 3D sahnalar yengillashtirilgan (kamroq zarracha, past DPR), scroll buzilmaydi
+- 3D sahna ekrandan chiqsa to'xtatiladi (batareya tejaladi); WebGL bo'lmasa oddiy rasm ko'rsatiladi
 
-## React Compiler
+## Ma'lumotlarni o'zgartirish
+Barcha matnlar, havolalar, ko'nikmalar va loyihalar bitta faylda: `src/data/portfolio.js`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Ishga tushirish
+```bash
+npm install
+npm run dev
+```

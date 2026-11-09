@@ -1,44 +1,49 @@
-import Navbar from "./components/Navbar"
+import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-import { useEffect, useState } from "react";
+import Skills from "./components/Skills";
+import Projects from "./components/Projects";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+
+const getInitialMode = () => {
+  const saved = localStorage.getItem("theme");
+  return saved ? saved === "dark" : true;
+};
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(getInitialMode);
 
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      offset: 100
-    })
-    document.documentElement.classList.add('dark')
+    AOS.init({ duration: 900, once: true, offset: 60, disable: () => window.matchMedia("(prefers-reduced-motion: reduce)").matches });
   }, []);
 
   useEffect(() => {
-    AOS.refresh()
-  },[darkMode])
-
-  const  toggleDarkMode = () => {
-    const newMode =  !darkMode;
-    setDarkMode(newMode);
-    document.documentElement.classList.toggle('dark')
-
-  }
+    document.documentElement.classList.toggle("dark", darkMode);
+    localStorage.setItem("theme", darkMode ? "dark" : "light");
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", darkMode ? "#0d182e" : "#fff7ed");
+  }, [darkMode]);
 
   return (
-      <div className={
-        darkMode
-        ? 'bg-linear-to-br from-gray-900 via-[#0d182e] to-gray-900 min-h-screen'
-        : 'bg-linear-to-br from-gray-50 to-blue-50 min-h-screen'
-      }>
-        <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
+    <div
+      className={`min-h-screen overflow-x-hidden transition-colors duration-500 ${
+        darkMode ? "bg-linear-to-br from-gray-900 via-[#0d182e] to-gray-900" : "bg-linear-to-br from-orange-50 via-white to-blue-50"
+      }`}
+    >
+      <Navbar darkMode={darkMode} toggleDarkMode={() => setDarkMode((d) => !d)} />
+      <main>
         <Hero darkMode={darkMode} />
         <About darkMode={darkMode} />
-      </div>
-  )
-}
+        <Skills darkMode={darkMode} />
+        <Projects darkMode={darkMode} />
+        <Contact darkMode={darkMode} />
+      </main>
+      <Footer darkMode={darkMode} />
+    </div>
+  );
+};
 
-export default App
+export default App;
